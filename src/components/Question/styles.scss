@@ -1,11 +1,26 @@
 .question {
 	background: #fefefe;
+	border: 1px solid #fefefe;
 	border-radius: 0.5rem;
 	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 	padding: 1.5rem;
 
 	& + .question {
 		margin-top: 0.5rem;
+	}
+	
+	&.highlighted {
+		background: #f4f0ff;
+		border: 1px solid #835afd;
+		
+		footer .user-info span {
+			color: #29292e;
+		}
+	}
+	
+	&.answered {
+		background: #dbdcdd;
+		border: 1px solid #dbdcdd;
 	}
 
 	p {
@@ -18,9 +33,15 @@
 		align-items: center;
 		margin-top: 1.5rem;
 
+		> div {
+			display: flex;
+			gap: 1rem;
+		}
+
 		.user-info {
 			display: flex;
 			align-items: center;
+			gap: 0.5rem;
 
 			img {
 				width: 2rem;
@@ -29,7 +50,6 @@
 			}
 
 			span {
-				margin-left: 0.5rem;
 				color: #737380;
 				font-size: 0.875rem;
 			}
