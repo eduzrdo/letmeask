@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import illustrationImg from '../../assets/images/illustration.svg';
@@ -9,13 +9,15 @@ import { database } from '../../services/firebase';
 
 import { Button } from '../../components/Button';
 import { useAuth } from '../../hooks/useAuth';
+import { usePageTitle } from '../../hooks/usePageTitle';
 
 import './styles.scss';
 
 export function Home() {
-	const history = useHistory();
-	const { user, signInWithGoogle } = useAuth();
 	const [roomCode, setRoomCode] = useState('');
+	const { user, signInWithGoogle } = useAuth();
+	const { handleTitleChange } = usePageTitle();
+	const history = useHistory();
 
 	async function handleCreateRoom() {
 		if (!user) {
@@ -46,6 +48,10 @@ export function Home() {
 
 		history.push(`/rooms/${roomCode}`);
 	}
+
+	useEffect(() => {
+		handleTitleChange('Login - Letmeask');
+	}, [handleTitleChange]);
 
 	return (
 		<div id='page-auth'>
