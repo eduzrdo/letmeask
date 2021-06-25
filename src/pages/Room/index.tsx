@@ -10,10 +10,11 @@ import { Question } from '../../components/Question';
 import { useAuth } from '../../hooks/useAuth';
 import { database } from '../../services/firebase';
 
-import './styles.scss';
 import { useRoom } from '../../hooks/useRoom';
+import { usePageTitle } from '../../hooks/usePageTitle';
 
-
+import './styles.scss';
+import { useEffect } from 'react';
 
 type RoomParams = {
 	id: string;
@@ -21,6 +22,7 @@ type RoomParams = {
 
 export function Room() {
 	const { user, signInWithGoogle } = useAuth();
+	const { handleTitleChange } = usePageTitle();
 	const { id: roomId } = useParams<RoomParams>();
 	const [newQuestion, setNewQuestion] = useState('');
 	const { title, questions } = useRoom(roomId);
@@ -66,6 +68,10 @@ export function Room() {
 			await signInWithGoogle();
 		}
 	}
+
+	useEffect(() => {
+		handleTitleChange(`${questions.length} pergunta${questions.length === 1 ? '' : 's'} - ${title}`);
+	}, [handleTitleChange, questions, title]);
 
 	return (
 		<div id='page-room'>

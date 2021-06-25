@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
 import logoImg from '../../assets/images/logo.svg';
@@ -12,17 +13,19 @@ import { useAuth } from '../../hooks/useAuth';
 import { useRoom } from '../../hooks/useRoom';
 
 import '../Room/styles.scss';
+import { usePageTitle } from '../../hooks/usePageTitle';
 
 type RoomParams = {
 	id: string;
 }
 
 export function AdminRoom() {
-	const { user, signInWithGoogle } = useAuth();
-	const history = useHistory();
 	const params = useParams<RoomParams>();
 	const roomId = params.id;
+	const history = useHistory();
 
+	const { user, signInWithGoogle } = useAuth();
+	const { handleTitleChange } = usePageTitle();
 	const { title, questions } = useRoom(roomId);
 
 	async function handleEndRoom() {
@@ -45,6 +48,10 @@ export function AdminRoom() {
 			}
 		}
 	}
+
+	useEffect(() => {
+		handleTitleChange(`${questions.length} pergunta${questions.length === 1 ? '' : 's'} - ${title}`);
+	}, [handleTitleChange, questions, title]);
 
 	return (
 		<div id="page-room">
