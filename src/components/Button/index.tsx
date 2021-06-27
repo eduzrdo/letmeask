@@ -18,6 +18,7 @@ export function Button({ isOutlined = false, buttonStyle, classes = [], ...props
 			className={cx(
 				'button',
 				{ 'outlined': isOutlined },
+				{ 'styled': buttonStyle !== undefined },
 				{ 'google': buttonStyle === 'google' },
 				theme,
 				...classes
