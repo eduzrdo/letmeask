@@ -1,4 +1,8 @@
 #page-room {
+	min-height: 100vh;
+	background: var(--dark-white);
+	padding-bottom: 1rem;
+
 	header {
 		padding: 1.5rem;
 		border-bottom: 1px solid #e2e2e2;
@@ -107,6 +111,40 @@
 
 		.question-list {
 			margin-top: 2rem;
+		}
+	}
+
+	&.dark-theme {
+		background: var(--dark-dark-background);
+
+		main {
+			.room-title {
+				h1 {
+					color: var(--white);
+				}
+
+				span {
+					background: var(--dark-secondary-color);
+				}
+			}
+
+			form {
+				textarea {
+					background: var(--dark-light-background);
+					color: var(--light-gray);
+				}
+
+				button {
+					background: var(--dark-main-color);
+					color: var(--white);
+				}
+
+				.form-footer span {
+					// > span {
+						color: var(--light-gray);
+					// }
+				}
+			}
 		}
 	}
 }

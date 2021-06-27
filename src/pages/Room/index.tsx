@@ -1,20 +1,20 @@
 import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
-import logoImg from '../../assets/images/logo.svg';
+import cx from 'classnames';
 
 import { Button } from '../../components/Button';
-import { RoomCode } from '../../components/RoomCode';
 import { Question } from '../../components/Question';
+import { Header } from '../../components/Header';
 
 import { useAuth } from '../../hooks/useAuth';
 import { database } from '../../services/firebase';
 
 import { useRoom } from '../../hooks/useRoom';
 import { usePageTitle } from '../../hooks/usePageTitle';
+import { useEffect } from 'react';
+import { useTheme } from '../../hooks/useTheme';
 
 import './styles.scss';
-import { useEffect } from 'react';
 
 type RoomParams = {
 	id: string;
@@ -26,6 +26,7 @@ export function Room() {
 	const { id: roomId } = useParams<RoomParams>();
 	const [newQuestion, setNewQuestion] = useState('');
 	const { title, questions } = useRoom(roomId);
+	const { theme } = useTheme();
 
 	async function handleSendQuestion(event: FormEvent) {
 		event.preventDefault();
@@ -74,13 +75,8 @@ export function Room() {
 	}, [handleTitleChange, questions, title]);
 
 	return (
-		<div id='page-room'>
-			<header>
-				<div className='content'>
-					<img src={logoImg} alt='Letmeask' />
-					<RoomCode code={roomId} />
-				</div>
-			</header>
+		<div id='page-room' className={cx(theme)}>
+			<Header roomId={roomId} />
 
 			<main>
 				<div className='room-title'>

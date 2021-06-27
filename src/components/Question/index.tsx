@@ -1,6 +1,8 @@
 import { ReactNode } from 'react';
 import classNames from 'classnames';
 
+import { useTheme } from '../../hooks/useTheme';
+
 import './styles.scss';
 
 type QuestionProps = {
@@ -21,12 +23,15 @@ export function Question({
 	isAnswered = false,
 	isHighlighted = false,
 }: QuestionProps) {
+	const { theme } = useTheme();
+
 	return (
 		<div
 			className={classNames(
 				'question',
 				{ answered: isAnswered },
 				{ highlighted: isHighlighted && !isAnswered, },
+				theme,
 			)}
 		>
 			<p>{content}</p>

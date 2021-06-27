@@ -1,0 +1,38 @@
+header {
+	padding: 1.5rem;
+	border-bottom: 1px solid #e2e2e2;
+
+	.content {
+		max-width: 70rem;
+		margin: 0 auto;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		.left {
+			display: flex;
+			gap: 1rem;
+
+			> img {
+				max-height: 45px;
+			}
+
+			button {
+				font-size: 0;
+
+				border: 0;
+				background: transparent;
+				cursor: pointer;
+			}
+		}
+
+		.right {
+			display: flex;
+			gap: 1rem;
+
+			button {
+				height: 2.5rem;
+			}
+		}
+	}
+} 
