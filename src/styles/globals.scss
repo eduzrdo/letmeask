@@ -4,6 +4,21 @@
 	box-sizing: border-box;
 }
 
+:root {
+	--dark-main-color: #FFAC42;
+	--dark-secondary-color: #FF1F57;
+
+	--dark-dark-background: #242424;
+	--dark-light-background: #333333;
+
+	--white: #fff;
+	--dark-white: #F8F8F8;
+	
+	--dark-gray: #737380;
+	--medium-gray: #A8A8B3;
+	--light-gray: #DBDCDD;
+}
+
 @media (max-width: 1400px) {
 	html {
 		font-size: 93.75%;
@@ -11,7 +26,6 @@
 }
 
 body {
-	background: #f8f8f8;
 	color: #29292e;
 }
 

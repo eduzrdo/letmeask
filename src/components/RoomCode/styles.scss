@@ -28,4 +28,14 @@
 		font-size: 0.875rem;
 		font-weight: 500;
 	}
+
+	&.dark-theme {
+		border-color: var(--dark-main-color);
+		background: transparent;
+		color: var(--white);
+
+		div {
+			background: var(--dark-main-color);
+		}
+	}
 }

@@ -1,11 +1,26 @@
 .question {
 	background: #fefefe;
+	border: 1px solid #fefefe;
 	border-radius: 0.5rem;
 	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 	padding: 1.5rem;
 
 	& + .question {
 		margin-top: 0.5rem;
+	}
+	
+	&.highlighted {
+		background: #f4f0ff;
+		border: 1px solid #835afd;
+		
+		footer .user-info span {
+			color: #29292e;
+		}
+	}
+	
+	&.answered {
+		background: #dbdcdd;
+		border: 1px solid #dbdcdd;
 	}
 
 	p {
@@ -18,9 +33,15 @@
 		align-items: center;
 		margin-top: 1.5rem;
 
+		> div {
+			display: flex;
+			gap: 1rem;
+		}
+
 		.user-info {
 			display: flex;
 			align-items: center;
+			gap: 0.5rem;
 
 			img {
 				width: 2rem;
@@ -29,7 +50,6 @@
 			}
 
 			span {
-				margin-left: 0.5rem;
 				color: #737380;
 				font-size: 0.875rem;
 			}
@@ -44,8 +64,11 @@
 			&.like-button {
 				display: flex;
 				align-items: flex-end;
-				color: #737380;
 				gap: 0.5rem;
+
+				svg path {
+					stroke: var(--dark-gray);
+				}
 
 				&.liked {
 					color: #835afd;
@@ -55,8 +78,64 @@
 					}
 				}
 
-				&:hover {
-					filter: brightness(0.7);
+			}
+			
+			&:hover {
+				filter: brightness(0.7);
+			}
+		}
+	}
+
+	&.dark-theme {
+		background: var(--dark-light-background);
+
+		p {
+			color: var(--white);
+		}
+
+		footer {
+			span {
+				color: var(--medium-gray);
+			}
+
+			button {
+				&.like-button {
+					color: var(--dark-white);
+
+					&.liked {
+						color: var(--dark-main-color);
+
+						svg path {
+							stroke: var(--dark-main-color);
+						}
+					}
+				}
+			}
+		}
+
+		&.highlighted {
+			background: var(--dark-dark-background);
+			border: 1px solid var(--dark-main-color);
+			
+			footer .user-info span {
+				color: var(--dark-gray);
+			}
+		}
+		
+		&.answered {
+			background: var(--dark-gray);
+			border: 1px solid var(--dark-gray);
+			filter: brightness(0.5);
+
+			footer {
+				.user-info span {
+					color: var(--light-gray);
+				}
+				
+				button {
+					svg path {
+						stroke: var(--light-gray);
+					}
 				}
 			}
 		}

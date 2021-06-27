@@ -41,6 +41,10 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+
+		&.dark-theme {
+			background: var(--dark-white);
+		}
 	}
 
 	.main-content {
@@ -135,6 +139,34 @@
 				height: 1px;
 				background: #a8a8b3;
 				margin-left: 1rem;
+			}
+		}
+	}
+
+	&.dark-theme {
+		aside {
+			background: var(--dark-main-color);
+		}
+
+		main {
+			background: var(--dark-dark-background);
+
+			h2 {
+				color: var(--light-gray);
+			}
+
+			input {
+				background: var(--dark-light-background);
+				color: var(--white);
+			}
+
+			button {
+				background: var(--dark-main-color);
+				color: var(--white);
+			}
+
+			p {
+				color: var(--light-gray);
 			}
 		}
 	}
