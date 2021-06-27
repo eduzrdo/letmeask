@@ -36,7 +36,8 @@ export function Room() {
 		}
 
 		if (!user) {
-			throw new Error('You must be logged in.');
+			alert('Você precisa estar logado para fazer uma pergunta.');
+			return;
 		}
 
 		const question = {
