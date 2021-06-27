@@ -1,4 +1,6 @@
 .button {
+	// 
+
 	height: 3.125rem;
 	border-radius: 0.5rem;
 	background: #835afd;
@@ -36,5 +38,9 @@
 	&.dark-theme {
 		border-color: var(--dark-main-color);
 		color: var(--dark-main-color);
+	}
+
+	&.google {
+		background: #ea4335;
 	}
 }

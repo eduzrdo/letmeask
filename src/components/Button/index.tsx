@@ -6,18 +6,21 @@ import './styles.scss';
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 	isOutlined?: boolean;
+	buttonStyle?: 'google';
+	classes?: string[];
 }
 
-export function Button({ isOutlined = false, ...props }: ButtonProps) {
+export function Button({ isOutlined = false, buttonStyle, classes = [], ...props }: ButtonProps) {
 	const { theme } = useTheme();
 
 	return (
 		<button
-			// className={`button ${isOutlined ? 'outlined' : ''}`}
 			className={cx(
 				'button',
 				{ 'outlined': isOutlined },
+				{ 'google': buttonStyle === 'google' },
 				theme,
+				...classes
 			)}
 			{...props}
 		/>

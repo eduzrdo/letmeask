@@ -75,10 +75,14 @@ export function Home() {
 						src={theme === 'dark-theme' ? logoDarkImg : logoImg}
 						alt='Letmeask'
 					/>
-					<button onClick={handleCreateRoom} className='create-room'>
+					{/* <button onClick={handleCreateRoom} className='create-room'>
 						<img src={googleIconImg} alt='Logo do Google' />
 						Crie sua sala com o Google
-					</button>
+					</button> */}
+					<Button onClick={handleCreateRoom} classes={['create-room']} buttonStyle='google' >
+						<img src={googleIconImg} alt='Logo do Google' />
+						Crie sua sala com o Google
+					</Button>
 					<div className='separator'>Ou entre em uma sala</div>
 					<form onSubmit={handleJoinRoom}>
 						<input

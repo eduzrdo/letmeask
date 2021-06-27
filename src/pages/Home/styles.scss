@@ -95,27 +95,6 @@
 
 		.create-room {
 			margin-top: 4rem;
-			height: 3.125rem;
-			border-radius: 0.5rem;
-			background: #ea4335;
-			color: #fff;
-
-			display: flex;
-			align-items: center;
-			justify-content: center;
-
-			cursor: pointer;
-			border: 0;
-
-			transition: filter 0.2s;
-
-			img {
-				margin-right: 0.5rem;
-			}
-
-			&:hover {
-				filter: brightness(0.9);
-			}
 		}
 
 		.separator {
