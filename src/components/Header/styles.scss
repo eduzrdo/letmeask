@@ -11,18 +11,32 @@ header {
 
 		.left {
 			display: flex;
+			align-items: center;
 			gap: 1rem;
 
-			> img {
-				max-height: 45px;
-			}
-
 			button {
+				width: 2.5rem;
+				height: 2.5rem;
+
 				font-size: 0;
 
 				border: 0;
 				background: transparent;
 				cursor: pointer;
+
+				transition: filter 0.2s;
+
+				&:hover {
+					filter: brightness(0.8);
+				}
+			}
+
+			> img {
+				max-height: 45px;
+			}
+
+			svg path, svg circle {
+				stroke: #835afd;
 			}
 		}
 
@@ -32,6 +46,14 @@ header {
 
 			button {
 				height: 2.5rem;
+			}
+		}
+	}
+
+	&.dark-theme {
+		.left {
+			svg path, svg circle {
+				stroke: var(--dark-main-color);
 			}
 		}
 	}
