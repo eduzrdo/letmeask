@@ -114,11 +114,11 @@
 		}
 
 		&.highlighted {
-			background: var(--dark-dark-background);
+			background: #FFAC4222;
 			border: 1px solid var(--dark-main-color);
 			
 			footer .user-info span {
-				color: var(--dark-gray);
+				color: var(--medium-gray);
 			}
 		}
 		
