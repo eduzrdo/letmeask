@@ -47,6 +47,10 @@ header {
 			button {
 				height: 2.5rem;
 			}
+
+			.manage-rooms {
+				color: var(--white);
+			}
 		}
 	}
 
@@ -54,6 +58,12 @@ header {
 		.left {
 			svg path, svg circle {
 				stroke: var(--dark-main-color);
+			}
+		}
+
+		.right {
+			.manage-rooms {
+				background: var(--dark-main-color);
 			}
 		}
 	}

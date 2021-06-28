@@ -2,21 +2,30 @@ import { ReactNode } from 'react';
 import cx from 'classnames';
 
 import { RoomCode } from '../RoomCode';
+import { Button } from '../Button';
 
 import logoImg from '../../assets/images/logo.svg';
 import logoDarkImg from '../../assets/images/logo-dark.svg';
 
 import { useTheme } from '../../hooks/useTheme';
 
+import { useRoom } from '../../hooks/useRoom';
+import { useAuth } from '../../hooks/useAuth';
+import { useHistory } from 'react-router-dom';
+
 import './styles.scss';
 
 type HeaderProps = {
 	roomId?: string;
 	children?: ReactNode;
+	isAdminPage?: boolean;
 }
 
-export function Header({ roomId, children }: HeaderProps) {
+export function Header({ roomId, children, isAdminPage }: HeaderProps) {
 	const { theme, handleToggleTheme } = useTheme();
+	const { roomOwnerId } = useRoom(roomId);
+	const { user } = useAuth();
+	const history = useHistory();
 
 	return (
 		<header className={cx(theme)}>
@@ -39,6 +48,16 @@ export function Header({ roomId, children }: HeaderProps) {
 				<div className='right'>
 					{roomId && <RoomCode code={roomId} />}
 					{children}
+					{user?.id === roomOwnerId && !isAdminPage && (
+						<Button onClick={() => history.push(`/admin/rooms/${roomId}`)} classes={['manage-rooms']}>
+							Gerenciar sala
+						</Button>
+					)}
+					{isAdminPage && (
+						<Button onClick={() => history.push(`/rooms/${roomId}`)} classes={['manage-rooms']}>
+							Fazer pergunta
+						</Button>
+					)}
 				</div>
 			</div>
 		</header>

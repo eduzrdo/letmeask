@@ -75,7 +75,7 @@ export function AdminRoom() {
 
 	return (
 		<div id="page-room" className={cx(theme)}>
-			<Header roomId={roomId}>
+			<Header roomId={roomId} isAdminPage>
 				<Button isOutlined onClick={handleEndRoom}>
 					Encerrar sala
 				</Button>
