@@ -35,36 +35,38 @@ export function useRoom(roomId: string | undefined) {
 	const [roomOwnerId, setRoomOwnerId] = useState('');
 
 	useEffect(() => {
-		const roomRef = database.ref(`rooms/${roomId}`);
+		if (roomId) {
+			const roomRef = database.ref(`rooms/${roomId}`);
 
-		roomRef.child('authorId').get().then(authorId => {
-			const parsedAuthorId: string = authorId.val();
-			setRoomOwnerId(parsedAuthorId);
-		})
+			roomRef.child('authorId').get().then(authorId => {
+				const parsedAuthorId: string = authorId.val();
+				setRoomOwnerId(parsedAuthorId);
+			})
 
-		roomRef.on('value', room => {
-			const databaseRoom = room.val();
+			roomRef.on('value', room => {
+				const databaseRoom = room.val();
 
-			const firebaseQuestions: FirebaseQuestions = databaseRoom.questions ?? {};
+				const firebaseQuestions: FirebaseQuestions = databaseRoom.questions ?? {};
 
-			const parsedQuestions = Object.entries(firebaseQuestions).map(([key, value]) => {
-				return {
-					id: key,
-					author: value.author,
-					content: value.content,
-					isAnswered: value.isAnswered,
-					isHighlighted: value.isHighlighted,
-					likeCount: Object.values(value.likes ?? {}).length,
-					likeId: Object.entries(value.likes ?? {}).find(([key, like]) => like.authorId === user?.id)?.[0],
-				}
+				const parsedQuestions = Object.entries(firebaseQuestions).map(([key, value]) => {
+					return {
+						id: key,
+						author: value.author,
+						content: value.content,
+						isAnswered: value.isAnswered,
+						isHighlighted: value.isHighlighted,
+						likeCount: Object.values(value.likes ?? {}).length,
+						likeId: Object.entries(value.likes ?? {}).find(([key, like]) => like.authorId === user?.id)?.[0],
+					}
+				});
+
+				setTitle(databaseRoom.title);
+				setQuestions(parsedQuestions);
 			});
 
-			setTitle(databaseRoom.title);
-			setQuestions(parsedQuestions);
-		});
-
-		return () => {
-			roomRef.off('value');
+			return () => {
+				roomRef.off('value');
+			}
 		}
 	}, [roomId, user?.id]);
 
