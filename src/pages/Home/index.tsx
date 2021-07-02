@@ -42,12 +42,12 @@ export function Home() {
 		const roomRef = await database.ref(`rooms/${roomCode}`).get();
 
 		if (!roomRef.exists()) {
-			alert('Room does not exist.');
+			alert('A sala que você está tentando acessar não existe.');
 			return;
 		}
 
 		if (roomRef.val().endedAt) {
-			alert('Room already closed.');
+			alert('Esta sala foi encerrada pelo adminstrador.');
 			return;
 		}
 
