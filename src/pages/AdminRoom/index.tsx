@@ -72,8 +72,11 @@ export function AdminRoom() {
 
 	async function handleHighlightQuestion(questionId: string) {
 		if (user && user.id === roomOwnerId) {
-			await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
-				isHighlighted: true
+			const questionRef = await database.ref(`rooms/${roomId}/questions/${questionId}`);
+			const isQuestionHighlighted = await (await questionRef.get()).val().isHighlighted;
+
+			questionRef.update({
+				isHighlighted: !isQuestionHighlighted
 			});
 		} else {
 			alert('Você precisa estar logado como administrador da sala para dar destaque à pergunta.');
