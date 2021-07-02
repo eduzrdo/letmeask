@@ -63,7 +63,21 @@ export function useRoom(roomId: string | undefined) {
 				setTitle(databaseRoom.title);
 
 				const parsedQuestionsOrderedByLikes = parsedQuestions.sort((a, b) => b.likeCount - a.likeCount);
-				setQuestions(parsedQuestionsOrderedByLikes);
+
+				const highlightedQuestions = parsedQuestionsOrderedByLikes.filter(question => {
+					return question.isHighlighted && !question.isAnswered;
+				});
+				const answeredQuestions = parsedQuestionsOrderedByLikes.filter(question => question.isAnswered);
+				const questionsNotHighlightedOrAnswered = parsedQuestionsOrderedByLikes.filter(question => {
+					return !question.isHighlighted && !question.isAnswered;
+				})
+
+				const orderedQuestions = [
+					...highlightedQuestions,
+					...questionsNotHighlightedOrAnswered,
+					...answeredQuestions,
+				]
+				setQuestions(orderedQuestions);
 			});
 
 			return () => {
