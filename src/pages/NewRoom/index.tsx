@@ -27,6 +27,12 @@ export function NewRoom() {
 	async function handleCreateRoom(event: FormEvent) {
 		event.preventDefault();
 
+		if (!user) {
+			alert('Você precisa estar logado para criar uma sala.');
+			history.push('/');
+			return;
+		}
+
 		if (newRoom.trim() === '') {
 			return;
 		}
