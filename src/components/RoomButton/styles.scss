@@ -1,0 +1,46 @@
+.room-card {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+
+	border: none;
+	cursor: pointer;
+
+	padding: 1rem;
+	border-radius: 0.5rem;
+	background: var(--white);
+	box-shadow: 0 2px 7px rgba(0, 0, 0, 0.10);
+
+	transition: transform 0.2s, box-shadow 0.2s;
+
+	&:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 7px 12px rgba(0, 0, 0, 0.10);
+	}
+
+	h1 {
+		margin-bottom: 1rem;
+		font: 700 1rem Poppins, sans-serif;
+	}
+
+	span {
+		background: #e559f9;
+		border-radius: 9999px;
+		padding: 0.5rem 1rem;
+		color: #fff;
+		font: 500 0.875rem Roboto, sans-serif;
+	}
+
+	&.dark-theme {
+		background: var(--dark-light-background);
+
+		h1 {
+			color: var(--white);
+		}
+
+		span {
+			background: var(--dark-main-color);
+			color: var(--white);
+		}
+	}
+}

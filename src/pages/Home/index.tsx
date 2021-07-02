@@ -29,7 +29,7 @@ export function Home() {
 			await signInWithGoogle();
 		}
 
-		history.push('/rooms/new');
+		history.push('/admin/rooms');
 	}
 
 	async function handleJoinRoom(event: FormEvent) {
@@ -75,10 +75,6 @@ export function Home() {
 						src={theme === 'dark-theme' ? logoDarkImg : logoImg}
 						alt='Letmeask'
 					/>
-					{/* <button onClick={handleCreateRoom} className='create-room'>
-						<img src={googleIconImg} alt='Logo do Google' />
-						Crie sua sala com o Google
-					</button> */}
 					<Button onClick={handleCreateRoom} classes={['create-room']} buttonStyle='google' >
 						<img src={googleIconImg} alt='Logo do Google' />
 						Crie sua sala com o Google

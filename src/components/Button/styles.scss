@@ -37,7 +37,14 @@
 
 	&.dark-theme {
 		border-color: var(--dark-main-color);
-		color: var(--dark-main-color);
+		color: var(--white);
+		background: var(--dark-main-color);
+
+		&.outlined {
+			border: 1px solid var(--dark-main-color);
+			background: transparent;
+			color: var(--dark-main-color);
+		}
 	}
 
 	&.google {

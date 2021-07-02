@@ -24,8 +24,13 @@ type HeaderProps = {
 export function Header({ roomId, children, isAdminPage }: HeaderProps) {
 	const { theme, handleToggleTheme } = useTheme();
 	const { roomOwnerId } = useRoom(roomId);
-	const { user } = useAuth();
+	const { user, logout } = useAuth();
 	const history = useHistory();
+
+	async function handleLogout() {
+		await logout();
+		history.push('/');
+	}
 
 	return (
 		<header className={cx(theme)}>
@@ -48,14 +53,19 @@ export function Header({ roomId, children, isAdminPage }: HeaderProps) {
 				<div className='right'>
 					{roomId && <RoomCode code={roomId} />}
 					{children}
+					{isAdminPage && (
+						<Button onClick={() => history.push(`/rooms/${roomId}`)} classes={['manage-rooms']}>
+							Fazer pergunta
+						</Button>
+					)}
 					{user?.id === roomOwnerId && !isAdminPage && (
 						<Button onClick={() => history.push(`/admin/rooms/${roomId}`)} classes={['manage-rooms']}>
 							Gerenciar sala
 						</Button>
 					)}
-					{isAdminPage && (
-						<Button onClick={() => history.push(`/rooms/${roomId}`)} classes={['manage-rooms']}>
-							Fazer pergunta
+					{user && (
+						<Button onClick={handleLogout} isOutlined >
+							Sair
 						</Button>
 					)}
 				</div>

@@ -1,0 +1,24 @@
+#page-my-rooms {
+	min-height: 100vh;
+	background: var(--dark-white);
+
+	main {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: 1fr;
+		
+		max-width: 60rem;
+		margin: 0 auto;
+		padding: 2rem 0;
+		gap: 2rem;
+	}
+
+	&.dark-theme {
+		background: var(--dark-dark-background);
+
+		&.outlined {
+			background: transparent;
+			
+		}
+	}
+}

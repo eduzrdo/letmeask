@@ -41,6 +41,14 @@ export function NewRoom() {
 		history.push(`/rooms/${firebaseRoom.key}`)
 	}
 
+	function handleMyRooms() {
+		if (!user) {
+			return alert('Você precisa estar logado para ver suas salas.');
+		}
+
+		history.push('/admin/rooms');
+	}
+
 	useEffect(() => {
 		handleTitleChange('Nova sala - Letmeask');
 	}, [handleTitleChange]);
@@ -70,6 +78,11 @@ export function NewRoom() {
 						<Button type='submit'>
 							Criar sala
 						</Button>
+						{user && (
+							<Button type='button' onClick={handleMyRooms} isOutlined>
+								Minhas salas
+							</Button>
+						)}
 					</form>
 					<p>Quer entrar em uma sala existente? <Link to='/'>Clique aqui</Link></p>
 				</div>

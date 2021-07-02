@@ -139,7 +139,7 @@
 				color: var(--white);
 			}
 
-			button:not(.styled) {
+			button:not(.styled):not(.outlined) {
 				background: var(--dark-main-color);
 				color: var(--white);
 			}
