@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import cx from 'classnames';
 import { database } from '../../services/firebase';
 
@@ -21,6 +21,7 @@ type RoomParams = {
 export function AdminRoom() {
 	const params = useParams<RoomParams>();
 	const roomId = params.id;
+	const history = useHistory();
 
 	const { user } = useAuth();
 	const { handleTitleChange } = usePageTitle();
@@ -28,10 +29,20 @@ export function AdminRoom() {
 	const { theme } = useTheme();
 
 	async function handleEndRoom() {
+		const isDeletionConfirmed = window.confirm('Tem certeza que deseja encerrar a sala?');
+
+		if (!isDeletionConfirmed) {
+			return;
+		}
+
 		if (user && user.id === roomOwnerId) {
 			await database.ref(`rooms/${roomId}`).update({
 				endedAt: new Date(),
 			});
+
+			alert('Sala encerrada.');
+
+			history.push('/');
 		} else {
 			alert('Você precisa estar logado como adminsitrador da sala para encerrá-la.');
 			return;
