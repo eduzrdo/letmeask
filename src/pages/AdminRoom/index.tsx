@@ -89,7 +89,10 @@ export function AdminRoom() {
 
 	return (
 		<div id="page-room" className={cx(theme)}>
-			<Header roomId={roomId} isAdminPage>
+			<Header roomId={roomId}>
+				<Button onClick={() => history.push(`/rooms/${roomId}`)} classes={['manage-rooms']}>
+					Fazer pergunta
+				</Button>
 				<Button isOutlined onClick={handleEndRoom}>
 					Encerrar sala
 				</Button>

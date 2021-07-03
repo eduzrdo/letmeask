@@ -9,7 +9,6 @@ import logoDarkImg from '../../assets/images/logo-dark.svg';
 
 import { useTheme } from '../../hooks/useTheme';
 
-import { useRoom } from '../../hooks/useRoom';
 import { useAuth } from '../../hooks/useAuth';
 import { useHistory } from 'react-router-dom';
 
@@ -18,14 +17,17 @@ import './styles.scss';
 type HeaderProps = {
 	roomId?: string;
 	children?: ReactNode;
-	isAdminPage?: boolean;
 }
 
-export function Header({ roomId, children, isAdminPage }: HeaderProps) {
+export function Header({ roomId, children }: HeaderProps) {
 	const { theme, handleToggleTheme } = useTheme();
-	const { roomOwnerId } = useRoom(roomId);
-	const { user } = useAuth();
+	const { user, signOut } = useAuth();
 	const history = useHistory();
+
+	async function handleSignOut() {
+		await signOut();
+		history.push('/');
+	}
 
 	return (
 		<header className={cx(theme)}>
@@ -48,14 +50,9 @@ export function Header({ roomId, children, isAdminPage }: HeaderProps) {
 				<div className='right'>
 					{roomId && <RoomCode code={roomId} />}
 					{children}
-					{user?.id === roomOwnerId && !isAdminPage && (
-						<Button onClick={() => history.push(`/admin/rooms/${roomId}`)} classes={['manage-rooms']}>
-							Gerenciar sala
-						</Button>
-					)}
-					{isAdminPage && (
-						<Button onClick={() => history.push(`/rooms/${roomId}`)} classes={['manage-rooms']}>
-							Fazer pergunta
+					{user && (
+						<Button onClick={handleSignOut} isOutlined>
+							Sair
 						</Button>
 					)}
 				</div>

@@ -1,17 +1,16 @@
-import { FormEvent, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { FormEvent, useState, useEffect } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 import cx from 'classnames';
 
 import { Button } from '../../components/Button';
 import { Question } from '../../components/Question';
 import { Header } from '../../components/Header';
 
-import { useAuth } from '../../hooks/useAuth';
 import { database } from '../../services/firebase';
 
+import { useAuth } from '../../hooks/useAuth';
 import { useRoom } from '../../hooks/useRoom';
 import { usePageTitle } from '../../hooks/usePageTitle';
-import { useEffect } from 'react';
 import { useTheme } from '../../hooks/useTheme';
 
 import './styles.scss';
@@ -21,12 +20,15 @@ type RoomParams = {
 }
 
 export function Room() {
+	const { id: roomId } = useParams<RoomParams>();
+
+	const [newQuestion, setNewQuestion] = useState('');
+
 	const { user, signInWithGoogle } = useAuth();
 	const { handleTitleChange } = usePageTitle();
-	const { id: roomId } = useParams<RoomParams>();
-	const [newQuestion, setNewQuestion] = useState('');
-	const { title, questions } = useRoom(roomId);
+	const { title, questions, roomOwnerId } = useRoom(roomId);
 	const { theme } = useTheme();
+	const history = useHistory();
 
 	async function handleSendQuestion(event: FormEvent) {
 		event.preventDefault();
@@ -71,13 +73,23 @@ export function Room() {
 		}
 	}
 
+	function manageRoom() {
+		history.push(`/admin/rooms/${roomId}`);
+	}
+
 	useEffect(() => {
 		handleTitleChange(`${questions.length} pergunta${questions.length === 1 ? '' : 's'} - ${title}`);
 	}, [handleTitleChange, questions, title]);
 
 	return (
 		<div id='page-room' className={cx(theme)}>
-			<Header roomId={roomId} />
+			<Header roomId={roomId}>
+				{user?.id === roomOwnerId && (
+					<Button onClick={manageRoom} classes={['manage-rooms']}>
+						Gerenciar sala
+					</Button>
+				)}
+			</Header>
 
 			<main>
 				<div className='room-title'>
