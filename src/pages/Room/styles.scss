@@ -139,10 +139,14 @@
 					color: var(--white);
 				}
 
-				.form-footer span {
-					// > span {
+				.form-footer {
+					span {
 						color: var(--light-gray);
-					// }
+
+						button {
+							color: var(--dark-main-color);
+						}
+					}
 				}
 			}
 		}
