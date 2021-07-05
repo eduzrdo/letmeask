@@ -157,7 +157,7 @@ export function AdminRoom() {
 				{!questions.length && (
 					<div className='no-questions-warning'>
 						<img src={theme === 'dark-theme' ? emptyQuestionsDarkImg : emptyQuestionsImg} alt='Não há perguntas' />
-						<h1>Nenhuma pergunta por aqui</h1>
+						<h1>Nenhuma pergunta por aqui...</h1>
 						<p>Envie o código desta sala para seus amigos e comece a responder perguntas!</p>
 					</div>
 				)}
