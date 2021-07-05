@@ -3,6 +3,9 @@ import { useHistory, useParams } from 'react-router-dom';
 import cx from 'classnames';
 import { database } from '../../services/firebase';
 
+import emptyQuestionsImg from '../../assets/images/empty-questions.svg'
+import emptyQuestionsDarkImg from '../../assets/images/empty-questions-dark.svg'
+
 import { Button } from '../../components/Button';
 import { Question } from '../../components/Question';
 import { Header } from '../../components/Header';
@@ -105,6 +108,7 @@ export function AdminRoom() {
 				</div>
 
 				<div className="question-list">
+
 					{questions.map(question => {
 						return (
 							<Question
@@ -147,7 +151,16 @@ export function AdminRoom() {
 							</Question>
 						)
 					})}
+
 				</div>
+
+				{!questions.length && (
+					<div className='no-questions-warning'>
+						<img src={theme === 'dark-theme' ? emptyQuestionsDarkImg : emptyQuestionsImg} alt='Não há perguntas' />
+						<h1>Nenhuma pergunta por aqui</h1>
+						<p>Envie o código desta sala para seus amigos e comece a responder perguntas!</p>
+					</div>
+				)}
 			</main>
 		</div>
 	)
