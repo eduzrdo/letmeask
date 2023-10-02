@@ -20,9 +20,10 @@ A aplicação consiste em uma plataforma onde pessoas podem entrar em uma sala o
 ## Implantação em produção
 - [Firebase - Deploy e banco de dados](https://firebase.google.com/?hl=pt)
 
-# Autor
+# :man_technologist: Autor
 
 Eduardo Afonso de Oliveira
 
-https://www.linkedin.com/in/eduardo-oliveira-352182166/
-
+[![E-mail](https://raw.githubusercontent.com/eduzrdo/assets/4a88a1195b5fe2313b27f63a800d2b1dd8ff67ab/icons/mail.svg)](mailto:eduardoliveira.dev@gmail.com)
+&nbsp;&nbsp;
+[![GitHub](https://raw.githubusercontent.com/eduzrdo/assets/8cb8aa7fa73dd6fed3e2a450071cc3e8c349f02d/icons/github.svg)](https://github.com/eduzrdo)
